@@ -147,4 +147,3 @@ For technical support or questions:
 
 This project is licensed under the MIT License.
 
-This project is licensed under the MIT License.
