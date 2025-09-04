@@ -11,10 +11,7 @@ A comprehensive Django-based platform for managing eldercare services, including
 
 ### Frontend
 - **HTML5** - Markup structure
-- **CSS3** - Styling
-- **Bootstrap 5** - Responsive UI framework
 - **Font Awesome 6** - Icons
-- **JavaScript** - Interactive functionality
 
 ## 🛠️ Installation & Setup
 
@@ -295,3 +292,4 @@ For technical support or questions:
 ## 📄 License
 
 This project is licensed under the MIT License.
+
