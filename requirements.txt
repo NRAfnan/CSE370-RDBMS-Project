@@ -1,0 +1,15 @@
+# Django 4.2.x is compatible with MariaDB 10.4+
+Django>=4.2,<5.0
+# MySQL drivers - PyMySQL is recommended for Windows
+# mysqlclient is optional (requires C compiler and MySQL dev libraries)
+# Uncomment the line below only if you have Visual C++ 14.0+ and MySQL C libraries installed:
+# mysqlclient>=2.1.0
+
+# Pure-Python MySQL driver (recommended for Windows/XAMPP)
+PyMySQL>=1.1.0
+
+# Other dependencies
+dj-database-url>=2.0.0
+gunicorn>=21.0.0
+whitenoise>=6.5.0
+python-decouple>=3.8
