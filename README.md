@@ -77,139 +77,9 @@ python manage.py runserver
 
 Access the application at: http://127.0.0.1:8000
 
-## 🌐 Web Deployment
+``` 
 
-### Option 1: Traditional VPS/Server
-
-#### 1. Server Requirements
-- Ubuntu 20.04+ / CentOS 8+ / Debian 11+
-- Python 3.8+
-- MySQL 8.0+
-- Nginx
-- Gunicorn
-
-#### 2. Server Setup
-```bash
-# Update system
-sudo apt update && sudo apt upgrade -y
-
-# Install Python and dependencies
-sudo apt install python3 python3-pip python3-venv mysql-server nginx -y
-
-# Install MySQL client
-sudo apt install python3-dev default-libmysqlclient-dev build-essential -y
 ```
-
-#### 3. Application Deployment
-```bash
-# Clone application
-git clone <repository-url> /var/www/eldercare
-cd /var/www/eldercare
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp env_example.txt .env
-# Edit .env with production values
-
-# Collect static files
-python manage.py collectstatic
-
-# Run migrations
-python manage.py migrate
-
-# Create superuser
-python manage.py createsuperuser
-```
-
-#### 4. Gunicorn Configuration
-Create `/etc/systemd/system/eldercare.service`:
-```ini
-[Unit]
-Description=Eldercare Gunicorn daemon
-After=network.target
-
-[Service]
-User=www-data
-Group=www-data
-WorkingDirectory=/var/www/eldercare
-Environment="PATH=/var/www/eldercare/venv/bin"
-ExecStart=/var/www/eldercare/venv/bin/gunicorn --workers 3 --bind unix:/var/www/eldercare/eldercare.sock special_care_platform.wsgi:application
-
-[Install]
-WantedBy=multi-user.target
-```
-
-#### 5. Nginx Configuration
-Create `/etc/nginx/sites-available/eldercare`:
-```nginx
-server {
-    listen 80;
-    server_name yourdomain.com www.yourdomain.com;
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    
-    location /static/ {
-        root /var/www/eldercare;
-    }
-
-    location /media/ {
-        root /var/www/eldercare;
-    }
-
-    location / {
-        include proxy_params;
-        proxy_pass http://unix:/var/www/eldercare/eldercare.sock;
-    }
-}
-```
-
-#### 6. Enable and Start Services
-```bash
-# Enable and start Gunicorn
-sudo systemctl enable eldercare
-sudo systemctl start eldercare
-
-# Enable and restart Nginx
-sudo ln -s /etc/nginx/sites-available/eldercare /etc/nginx/sites-enabled
-sudo nginx -t
-sudo systemctl restart nginx
-```
-
-### Option 2: Cloud Platforms
-
-#### Heroku
-```bash
-# Install Heroku CLI
-# Create app and set environment variables
-heroku create your-eldercare-app
-heroku config:set DATABASE_URL=mysql://...
-heroku config:set SECRET_KEY=...
-heroku config:set DEBUG=False
-heroku config:set ALLOWED_HOSTS=your-app.herokuapp.com
-
-# Deploy
-git push heroku main
-heroku run python manage.py migrate
-heroku run python manage.py createsuperuser
-```
-
-#### DigitalOcean App Platform
-- Connect your GitHub repository
-- Set environment variables
-- Choose Python runtime
-- Deploy automatically
-
-#### AWS Elastic Beanstalk
-- Create Python environment
-- Upload application
-- Configure environment variables
-- Deploy
 
 ## 🔧 Configuration Options
 
@@ -240,22 +110,7 @@ heroku run python manage.py createsuperuser
 
 - User authentication and authorization
 - Role-based permissions
-- CSRF protection
-- XSS protection
 - Secure password validation
-- HTTPS enforcement in production
-
-## 📊 Monitoring & Maintenance
-
-### Logs
-```bash
-# Application logs
-sudo journalctl -u eldercare
-
-# Nginx logs
-sudo tail -f /var/log/nginx/access.log
-sudo tail -f /var/log/nginx/error.log
-```
 
 ### Database Backup
 ```bash
@@ -277,9 +132,7 @@ pip install -r requirements.txt
 # Run migrations
 python manage.py migrate
 
-# Restart services
-sudo systemctl restart eldercare
-sudo systemctl restart nginx
+
 ```
 
 ## 🆘 Support
@@ -292,4 +145,5 @@ For technical support or questions:
 ## 📄 License
 
 This project is licensed under the MIT License.
+
 
