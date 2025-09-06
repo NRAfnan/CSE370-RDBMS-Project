@@ -109,10 +109,7 @@ Access the application at: http://127.0.0.1:8000
 
 - User authentication and authorization
 - Role-based permissions
-- CSRF protection
-- XSS protection
 - Secure password validation
-- HTTPS enforcement in production
 
 ### Database Backup
 ```bash
@@ -122,17 +119,6 @@ mysqldump -u username -p eldercare_db > backup_$(date +%Y%m%d_%H%M%S).sql
 # Restore backup
 mysql -u username -p eldercare_db < backup_file.sql
 ```
-
-### Updates
-```bash
-# Pull latest code
-git pull origin main
-
-# Update dependencies
-pip install -r requirements.txt
-
-# Run migrations
-python manage.py migrate
 
 ```
 
